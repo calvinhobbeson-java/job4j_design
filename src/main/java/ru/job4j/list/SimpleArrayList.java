@@ -26,24 +26,24 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public T set(int index, T newValue) {
-        for (int position = 0; position < container.length; position++) {
-            if (container[index].equals(position)) {
-                container[index] = newValue;
-                break;
-            }
-        }
-        return newValue;
+        T oldValue;
+        Objects.checkIndex(index, size);
+        oldValue = container[index];
+        container[index] = newValue;
+        return oldValue;
     }
 
     @Override
     public T remove(int index) {
+        Objects.checkIndex(index, size);
+        T t = container[index];
         System.arraycopy(container,
                 index + 1,
                 container,
                 index,
                 container.length - index - 1);
-        container[container.length - 1] = null;
-        return container[index];
+        container[size--] = null;
+        return t;
     }
 
     @Override
@@ -54,15 +54,12 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public int size() {
-        int size = 0;
-        for (int i = 0; i < container.length; i++) {
-            size++;
-        }
         return size;
     }
 
     @Override
     public Iterator<T> iterator() {
+
         return new Iterator<T>() {
             int counter = 0;
             int expectedModCount = modCount;
@@ -72,7 +69,7 @@ public class SimpleArrayList<T> implements List<T> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return counter < container.length;
+                return counter < size;
             }
 
             @Override
