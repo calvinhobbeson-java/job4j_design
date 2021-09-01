@@ -10,14 +10,23 @@ public class SimpleArrayList<T> implements List<T> {
 
     private int modCount = 0;
 
+    public SimpleArrayList() {
+        this.container = (T[]) new Object[10];
+    }
+
+
     public SimpleArrayList(int capacity) {
         this.container = (T[]) new Object[capacity];
     }
 
+     public void increase() {
+        container = Arrays.copyOf(container, container.length * 2);
+         }
+
     @Override
     public void add(T value) {
         if (size >= container.length) {
-            container = Arrays.copyOf(container, container.length * 2);
+            increase();
         }
         container[size] = value;
         size++;
