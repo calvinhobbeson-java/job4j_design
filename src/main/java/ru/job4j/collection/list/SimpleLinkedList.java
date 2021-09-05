@@ -39,9 +39,13 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-
         if (index < 0 && index > size) {
             throw new IndexOutOfBoundsException();
+        }
+        for (int count = 0; count < size; count++) {
+            if (count != index) {
+                return null;
+            }
         }
         return null;
     }
