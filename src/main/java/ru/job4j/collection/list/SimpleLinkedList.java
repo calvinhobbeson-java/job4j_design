@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 public class SimpleLinkedList<E> implements List<E> {
 
-    int size = 0;
+    int size;
     int modCount = 0;
     transient Node<E> first;
     transient Node<E> last;
@@ -39,15 +39,19 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        if (index < 0 && index > size) {
+
+        Node<E> node = first;
+
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
-        for (int count = 0; count < size; count++) {
+        for (int count = 0; node.next != null; count++) {
             if (count != index) {
-                return null;
+               node = node.next;
             }
+            break;
         }
-        return null;
+        return node.item;
     }
 
     public Iterator<E> iterator() {
