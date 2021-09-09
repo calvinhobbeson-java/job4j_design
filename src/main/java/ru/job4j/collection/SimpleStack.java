@@ -9,24 +9,11 @@ public class SimpleStack<T> {
     private Node<T> head;
 
     public T pop() {
-        Node<T> temp = head;
-        if (head == null) {
-            throw new NoSuchElementException();
-        }
-        head = head.next;
-        temp.next = null;
-        return temp.value;
+        return linked.deleteFirst();
     }
 
     public void push(T value) {
-        Node<T> node = new Node<>(value, null);
-        Node<T> temp = head;
-        if (head == null) {
-            head = node;
-            return;
-        }
-        head = node;
-        head.next = temp;
+       linked.addFirst(value);
     }
 
     public Iterator<T> iterator() {
