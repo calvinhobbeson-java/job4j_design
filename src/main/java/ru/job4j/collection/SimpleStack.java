@@ -8,33 +8,16 @@ public class SimpleStack<T> {
     private ForwardLinked<T> linked = new ForwardLinked<T>();
     private Node<T> head;
 
+    public boolean isEmpty() {
+        return linked.isEmpty();
+    }
+
     public T pop() {
         return linked.deleteFirst();
     }
 
     public void push(T value) {
        linked.addFirst(value);
-    }
-
-    public Iterator<T> iterator() {
-        return new Iterator<>() {
-            Node<T> node = head;
-
-            @Override
-            public boolean hasNext() {
-                return node != null;
-            }
-
-            @Override
-            public T next() {
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
-                T value = node.value;
-                node = node.next;
-                return value;
-            }
-        };
     }
 
     private static class Node<T> {
