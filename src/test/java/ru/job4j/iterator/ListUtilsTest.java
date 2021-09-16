@@ -29,7 +29,7 @@ public class ListUtilsTest {
     public void whenAddAfterLast() {
         List<Integer> input = new ArrayList<>(Arrays.asList(0, 1, 2));
         ListUtils.addAfter(input, 2, 3);
-        assertThat(Arrays.asList(0, 1, 2, 3), Is.is(input));
+         assertThat(Arrays.asList(0, 1, 2, 3), Is.is(input));
     }
 
     @Test

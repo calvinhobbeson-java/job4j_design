@@ -21,11 +21,12 @@ public class ListUtils {
         Objects.checkIndex(index, list.size());
         ListIterator<T> i = list.listIterator();
         while (i.hasNext()) {
-            if (i.previousIndex() == index) {
+            if (i.nextIndex() == index) {
+                i.next();
                 i.add(value);
                 break;
             }
-            i.previous();
+            i.next();
         }
     }
 
@@ -49,12 +50,10 @@ public class ListUtils {
 
     public static <T> void removeAll(List<T> list, List<T> elements) {
         ListIterator<T> i = list.listIterator();
-        for (T item : list) {
-            for (T element : elements) {
-                if (item.equals(element)) {
-                    list.remove(item);
-                }
-            }
+        while (i.hasNext()) {
+           if (elements.contains(i.next())) {
+                    i.remove();
+           }
         }
     }
 }
