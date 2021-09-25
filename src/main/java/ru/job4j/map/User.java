@@ -13,9 +13,6 @@ public class User {
         this.birthday = birthday;
     }
 
-    public int hashCode() {
-        return Objects.hash(name, children, birthday);
-    }
 
     public static void main(String[] args) {
         Calendar calendar = new GregorianCalendar(2017, Calendar.SEPTEMBER, 25);
@@ -31,5 +28,12 @@ public class User {
         map.put(userTwo, new Object());
 
         System.out.println(map);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return children == user.children && Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
     }
 }
