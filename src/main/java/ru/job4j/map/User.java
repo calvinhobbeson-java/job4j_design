@@ -16,7 +16,7 @@ public class User {
 
     public static void main(String[] args) {
         Calendar calendar = new GregorianCalendar(2017, Calendar.SEPTEMBER, 25);
-        Map<User, Object> map = new HashMap<>();
+        HashMap<User, Object> map = new HashMap<>();
         User userOne = new User(
                 "Garry", 1,
                 calendar);
