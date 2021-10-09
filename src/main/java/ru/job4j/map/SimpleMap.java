@@ -43,9 +43,13 @@ public class SimpleMap<K, V> implements Map<K, V> {
         count = 0;
         capacity = capacity * 2;
         MapEntry<K, V>[] newTable = new MapEntry[capacity];
-          table = newTable;
         for (MapEntry<K, V> entry : table) {
-          put(entry.key, entry.value);
+          if (entry.key != null) {
+              int index = indexFor(hash(entry.key));
+              newTable[index] = new MapEntry(entry.key, entry.value);
+              count++;
+              modCount++;
+          }
     }
 }
 
@@ -62,7 +66,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public boolean remove(K key) {
         int index = indexFor(hash(key));
         if (table[index].key.equals(key)) {
-            table[index].key = null;
+            table[index] = null;
             count--;
             modCount++;
             return true;
