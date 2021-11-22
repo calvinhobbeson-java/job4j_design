@@ -21,8 +21,9 @@ public class Analize {
                 info.setChanged(info.getChanged() + 1);
             }
             map.remove(user2.getId());
-            info.setDeleted(map.size());
         }
+
+        info.setDeleted(map.size());
         return info;
     }
 }
