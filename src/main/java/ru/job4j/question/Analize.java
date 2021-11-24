@@ -17,12 +17,11 @@ public class Analize {
             if (!map.containsKey(user2.getId())) {
                 info.setAdded(info.getAdded() + 1);
             }
-            if (!Objects.equals(map.get(user2.getId()), user2)) {
+            if (Objects.nonNull(map.get(user2.getId())) && !Objects.equals(map.get(user2.getId()), user2))  {
                 info.setChanged(info.getChanged() + 1);
             }
             map.remove(user2.getId());
         }
-
         info.setDeleted(map.size());
         return info;
     }
