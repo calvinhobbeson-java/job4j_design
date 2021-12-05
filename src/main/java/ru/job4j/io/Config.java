@@ -20,9 +20,12 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines()
-                    .filter(c -> !c.contains("#"))
                     .filter(c -> !c.isEmpty())
-                    .map(c -> c.split("="))
+                    .filter(c -> !c.contains("#"))
+                    .filter(c -> c.contains("="))
+                    .filter(c -> !c.startsWith("="))
+                    .filter(c -> !c.endsWith("="))
+                    .map(c -> c.split("=", 2))
                     .forEach(c -> values.put(c[0], c[1]));
         } catch (Exception e) {
             e.printStackTrace();
