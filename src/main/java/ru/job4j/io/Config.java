@@ -3,6 +3,7 @@ package ru.job4j.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -12,10 +13,13 @@ public class Config {
 
     private final String path;
     private final Map<String, String> values = new HashMap<>();
+    int counter = 0;
+    String delimeter = "=";
 
     public Config(final String path) {
         this.path = path;
     }
+
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
@@ -26,6 +30,11 @@ public class Config {
                     .filter(c -> !c.startsWith("="))
                     .filter(c -> !c.endsWith("="))
                     .map(c -> c.split("=", 2))
+                    .peek(c -> {
+                        if (c.length != 2) {
+                            throw new IllegalArgumentException("Wrong args");
+                        }
+                    })
                     .forEach(c -> values.put(c[0], c[1]));
         } catch (Exception e) {
             e.printStackTrace();
