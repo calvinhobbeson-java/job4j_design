@@ -3,18 +3,14 @@ package ru.job4j.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 public class Config {
 
     private final String path;
     private final Map<String, String> values = new HashMap<>();
-    int counter = 0;
-    String delimeter = "=";
 
     public Config(final String path) {
         this.path = path;
