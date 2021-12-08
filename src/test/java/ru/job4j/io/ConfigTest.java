@@ -1,9 +1,7 @@
 package ru.job4j.io;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 public class ConfigTest {
