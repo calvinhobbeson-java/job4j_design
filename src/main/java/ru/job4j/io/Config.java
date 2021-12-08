@@ -34,7 +34,7 @@ public class Config {
                         }
                     })
                     .forEach(c -> values.put(c[0], c[1]));
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
