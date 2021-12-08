@@ -22,9 +22,11 @@ public class Config {
             read.lines()
                     .filter(c -> !c.isEmpty())
                     .filter(c -> !c.contains("#"))
-                    .filter(c -> c.contains("="))
-                    .filter(c -> !c.startsWith("="))
-                    .filter(c -> !c.endsWith("="))
+                    .peek(c -> {
+                        if (!c.contains("=") || c.startsWith("=") || c.endsWith("=")) {
+                            throw new IllegalArgumentException("Wrong args");
+                        }
+                    })
                     .map(c -> c.split("=", 2))
                     .peek(c -> {
                         if (c.length != 2) {
