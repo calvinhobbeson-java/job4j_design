@@ -27,7 +27,7 @@ public class Config {
                             throw new IllegalArgumentException("Wrong args");
                         }
                     })
-                    .map(c -> c.split("=", 2))
+                    .map(c -> c.split("="))
                     .peek(c -> {
                         if (c.length != 2) {
                             throw new IllegalArgumentException("Wrong args");
