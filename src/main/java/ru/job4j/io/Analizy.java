@@ -9,8 +9,8 @@ public class Analizy {
         boolean serverDown = false;
         try (BufferedReader reader = new BufferedReader(new FileReader(source));
              PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(target)))) {
-            for (reader.readLine(); reader.readLine() == null; reader.readLine()) {
-                status = reader.readLine().split(" ");
+            for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+                status = line.split(" ");
                 while (!serverDown) {
                     if (status[0].equals("400") || status[0].equals("500")) {
                         serverDown = true;
@@ -31,6 +31,6 @@ public class Analizy {
 
     public static void main(String[] args) {
         Analizy analizy = new Analizy();
-        analizy.unavailable("server.log", "target.txt");
+        analizy.unavailable("server.txt", "target.txt");
     }
 }
