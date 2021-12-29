@@ -2,7 +2,25 @@ package ru.job4j.io;
 
 import java.io.*;
 
+/**
+ * класс описывает преобразование одного файла в другой
+ * @author calvinHobbeson
+ * @version 1.1
+ * убрал циклы while
+ */
+
 public class Analizy {
+    /**
+     *
+     * @param source путь к файлу лога
+     * @param target имя путь к файлу результата анализа
+     * создаем переменную, serverDown, которая показывает состояние сервера
+     * используем конструкцию try-with-resources
+     * создаем два потока на чтение и запись (декоратор)
+     * разделяем входные данные
+     * если  статус 400 или 500 то сервер падает, и идет запись
+     * если при упавшем сервере статус становится 300 или 200 то сервер оживает и снова записываем
+     */
 
     public void unavailable(String source, String target) {
         String[] status;
@@ -11,19 +29,15 @@ public class Analizy {
              PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(target)))) {
             for (String line = reader.readLine(); line != null; line = reader.readLine()) {
                 status = line.split(" ");
-                while (!serverDown) {
-                    if (status[0].equals("400") || status[0].equals("500")) {
+                    if (!serverDown && "400".equals(status[0]) || !serverDown && "500".equals(status[0])) {
                         serverDown = true;
-                        writer.println(status[1]);
+                        writer.printf(status[1], "%s%n");
                     }
-                }
-                while (serverDown) {
-                    if (status[0].equals("200") || status[0].equals("300")) {
-                        writer.println(status[1]);
+                    if (serverDown && "200".equals(status[0]) || serverDown && "300".equals(status[0])) {
+                        writer.printf("%s%n", status[1]);
                         serverDown = false;
                     }
                 }
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
