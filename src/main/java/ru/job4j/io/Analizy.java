@@ -31,7 +31,7 @@ public class Analizy {
                 status = line.split(" ");
                     if (!serverDown && "400".equals(status[0]) || !serverDown && "500".equals(status[0])) {
                         serverDown = true;
-                        writer.printf(status[1], "%s%n");
+                        writer.printf(status[1] + ";");
                     }
                     if (serverDown && "200".equals(status[0]) || serverDown && "300".equals(status[0])) {
                         writer.printf("%s%n", status[1]);
