@@ -15,6 +15,7 @@ public class AnalizyTest {
 
     @Test
     public void unavailable() throws IOException {
+        Analizy analizy = new Analizy();
         File source = folder.newFile("source.txt");
         File target = folder.newFile("target.txt");
         try (PrintWriter out = new PrintWriter(source)) {
@@ -25,7 +26,7 @@ public class AnalizyTest {
             out.println("500 11:01:02");
             out.println("200 11:02:02");
         }
-        Analizy.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
+        analizy.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
         StringBuilder rsl = new StringBuilder();
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             in.lines().forEach((rsl::append));

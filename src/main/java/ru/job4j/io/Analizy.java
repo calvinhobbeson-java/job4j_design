@@ -22,7 +22,7 @@ public class Analizy {
      * если при упавшем сервере статус становится 300 или 200 то сервер оживает и снова записываем
      */
 
-    public static void unavailable(String source, String target) {
+    public void unavailable(String source, String target) {
         String[] status;
         boolean serverDown = false;
         try (BufferedReader reader = new BufferedReader(new FileReader(source));
