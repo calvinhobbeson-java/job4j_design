@@ -10,20 +10,40 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * класс описывает поиск дубликатов в файловой системе
+ * @author Calvin Hobbeson
+ * @version 1.3
+ */
+
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
-    private Map<FileProperty, List<Path>> models = new HashMap<>();
+    /**
+     * @param models карта для хранения обьектов  FileProperty  каечстве ключа, и списка путей как значения
+     * @param paths список для хранения путей
+     * @param model экземпляр класса FileProperty
+     * создаем карту для  хранения обьектов и путей
+     * создаем экземпляр файла, отражающий нужные параметры для сравнения - имя и размер
+     * проверяем, есть ли ключ в карье, если нет, то создаем новый список, помещаем туда пути, и добавляем пару в карту
+     * если ключ в карте есть, то вызываем по ключу список путей, добавляем туде новый путь
+     * выводим в консоль списки, размером больше 1
+     */
 
+    private Map<FileProperty, List<Path>> models = new HashMap<>();
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         FileProperty model = new FileProperty(file.toFile().length(), file.toFile().getName());
-        List<Path> paths = new ArrayList<>();
-        paths.add(file.toAbsolutePath());
-        models.put(model, paths);
-        if (paths.size() > 1) {
-            System.out.println(file);
+        if (!models.containsKey(model)) {
+            List<Path> paths = new ArrayList<>();
+            paths.add(file.toAbsolutePath());
+            models.put(model, paths);
+        } else {
+            models.get(model).add(file);
         }
-        return super.visitFile(file, attrs);
+        if (models.get(model).size() > 1) {
+            System.out.println(models.get(model));
+        }
+            return super.visitFile(file, attrs);
+        }
     }
-}
