@@ -13,23 +13,30 @@ import java.util.Map;
 /**
  * класс описывает поиск дубликатов в файловой системе
  * @author Calvin Hobbeson
- * @version 1.3
+ * @version 1.4
+ * выделил печать списка в отделный метод
  */
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
     /**
-     * @param models карта для хранения обьектов  FileProperty  каечстве ключа, и списка путей как значения
+     * @param models карта для хранения обьектов  FileProperty в качестве ключа, и списка путей как значения
      * @param paths список для хранения путей
      * @param model экземпляр класса FileProperty
+     * @param pathsList список списков для путей, чтобы вывести егов консоль методом getPaths в main
      * создаем карту для  хранения обьектов и путей
      * создаем экземпляр файла, отражающий нужные параметры для сравнения - имя и размер
-     * проверяем, есть ли ключ в карье, если нет, то создаем новый список, помещаем туда пути, и добавляем пару в карту
-     * если ключ в карте есть, то вызываем по ключу список путей, добавляем туде новый путь
-     * выводим в консоль списки, размером больше 1
+     * проверяем, есть ли ключ в карте, если нет, то создаем новый список, помещаем туда пути, и добавляем пару в карту
+     * если ключ в карте есть, то вызываем по ключу список путей, добавляем туда новый путь
+     * добавляем в pathsList списки, размером больше 1
      */
 
     private Map<FileProperty, List<Path>> models = new HashMap<>();
+    private List<List<Path>> pathsList = new ArrayList<>();
+
+    public List<List<Path>> getPaths() {
+        return pathsList;
+    }
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
@@ -42,7 +49,7 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
             models.get(model).add(file);
         }
         if (models.get(model).size() > 1) {
-            System.out.println(models.get(model));
+            pathsList.add(models.get(model));
         }
             return super.visitFile(file, attrs);
         }
