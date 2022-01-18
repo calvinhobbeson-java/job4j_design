@@ -13,8 +13,9 @@ import java.util.Map;
 /**
  * класс описывает поиск дубликатов в файловой системе
  * @author Calvin Hobbeson
- * @version 1.4
+ * @version 1.5
  * выделил печать списка в отделный метод
+ * добавил построчный вывод резалта
  */
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
@@ -34,8 +35,8 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     private Map<FileProperty, List<Path>> models = new HashMap<>();
     private List<List<Path>> pathsList = new ArrayList<>();
 
-    public List<List<Path>> getPaths() {
-        return pathsList;
+    public void getPaths() {
+        pathsList.forEach(System.out::println);
     }
 
     @Override

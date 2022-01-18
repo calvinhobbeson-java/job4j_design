@@ -8,6 +8,6 @@ public class DuplicatesFinder {
     public static void main(String[] args) throws IOException {
         DuplicatesVisitor visitor = new DuplicatesVisitor();
         Files.walkFileTree(Path.of("./"), visitor);
-        System.out.println(visitor.getPaths());
+        visitor.getPaths();
     }
 }
