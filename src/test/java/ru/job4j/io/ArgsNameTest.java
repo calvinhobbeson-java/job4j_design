@@ -19,6 +19,12 @@ public class ArgsNameTest {
         assertThat(jvm.get("Xmx"), is("512"));
     }
 
+    @Test
+    public void whenMultipleEqualsSymbol() {
+        ArgsName jvm = ArgsName.of(new String[] {"-request=?msg=Exit"});
+        assertThat(jvm.get("request"), is("?msg=Exit"));
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void whenGetNotExist() {
         ArgsName jvm = ArgsName.of(new String[] {});
