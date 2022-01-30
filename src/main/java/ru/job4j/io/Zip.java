@@ -35,20 +35,19 @@ public class Zip {
     }
 
     public static void main(String[] args) throws IOException {
-        packSingleFile(
-                new File("./pom.xml"),
-                new File("./pom.zip")
-        );
-
         ArgsName parameters = ArgsName.of(args);
-        Path start = Paths.get(parameters.get(args[0]));
-        Path target = Paths.get(parameters.get(args[2]));
-        File file = target.toFile();
-        List<Path> pathsList = Search.search(start, p -> p.endsWith(args[1]));
+        Path directory = Paths.get(parameters.get("d"));
+        Path fileType = Paths.get(parameters.get("e"));
+        File target = Paths.get(parameters.get("o")).toFile();
 
-        if (args.length != 3) {
+        if (args.length != 3 || !directory.toFile().exists() || !directory.toFile().isDirectory()) {
             throw new IllegalArgumentException("Wrong args");
         }
-        packFiles(pathsList, file);
+        if (!fileType.startsWith(".")) {
+           String fileString = fileType.toString().replace(fileType.toString().charAt(0), '.');
+           fileType = Paths.get(fileString);
+        }
+        List<Path> pathsList = Search.search(directory, p -> p.endsWith(args[1]));
+        packFiles(pathsList, target);
     }
 }
