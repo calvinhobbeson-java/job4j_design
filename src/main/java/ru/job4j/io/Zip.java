@@ -37,17 +37,17 @@ public class Zip {
     public static void main(String[] args) throws IOException {
         ArgsName parameters = ArgsName.of(args);
         Path directory = Paths.get(parameters.get("d"));
-        Path fileType = Paths.get(parameters.get("e"));
+        String fileType = parameters.get("e");
         File target = Paths.get(parameters.get("o")).toFile();
 
         if (args.length != 3 || !directory.toFile().exists() || !directory.toFile().isDirectory()) {
             throw new IllegalArgumentException("Wrong args");
         }
         if (!fileType.startsWith(".")) {
-           String fileString = fileType.toString().replace(fileType.toString().charAt(0), '.');
-           fileType = Paths.get(fileString);
+            fileType = fileType.replace(fileType.charAt(0), '.');
         }
-        List<Path> pathsList = Search.search(directory, p -> p.endsWith(args[1]));
+        String finalFileType = fileType;
+        List<Path> pathsList = Search.search(directory, p -> p.endsWith(finalFileType));
         packFiles(pathsList, target);
     }
 }
