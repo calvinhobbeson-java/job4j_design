@@ -44,10 +44,9 @@ public class Zip {
             throw new IllegalArgumentException("Wrong args");
         }
         if (!fileType.startsWith(".")) {
-            fileType = fileType.replace(fileType.charAt(0), '.');
+            throw new IllegalArgumentException("Wrong args");
         }
-        String finalFileType = fileType;
-        List<Path> pathsList = Search.search(directory, p -> p.endsWith(finalFileType));
+        List<Path> pathsList = Search.search(directory, p -> !p.toFile().getName().endsWith(fileType));
         packFiles(pathsList, target);
     }
 }
