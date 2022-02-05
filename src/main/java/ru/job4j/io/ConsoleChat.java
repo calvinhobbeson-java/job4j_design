@@ -21,19 +21,19 @@ public class ConsoleChat {
         List<String> log = new ArrayList<>();
         Scanner in = new Scanner(System.in);
         Random random = new Random();
+        String enter = in.nextLine();
         boolean quit = false;
         boolean stop = false;
         System.out.println("Введите вопрос");
         while (!quit) {
-            in.nextLine();
-            log.add(in.nextLine());
-            if (in.nextLine().equals(OUT)) {
+            log.add(enter);
+            if (enter.equals(OUT)) {
                 quit = true;
             }
-            if (in.nextLine().equals(STOP)) {
+            if (enter.equals(STOP)) {
                 stop = true;
             }
-            if (in.nextLine().equals(CONTINUE)) {
+            if (in.nextLine().equals(CONTINUE) && stop) {
                 stop = false;
             }
             if (!quit && !stop) {
@@ -47,7 +47,7 @@ public class ConsoleChat {
 
     private List<String> readPhrases() {
         List<String> answers = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(botAnswers))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(botAnswers, StandardCharsets.UTF_8))) {
             br.lines().forEach(answers::add);
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,7 +56,7 @@ public class ConsoleChat {
     }
 
     private void saveLog(List<String> log) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(path, true))) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(path, StandardCharsets.UTF_8, true))) {
             log.forEach(pw::println);
         } catch (IOException e) {
             e.printStackTrace();
