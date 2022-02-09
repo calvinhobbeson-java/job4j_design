@@ -21,23 +21,24 @@ public class ConsoleChat {
         List<String> log = new ArrayList<>();
         Scanner in = new Scanner(System.in);
         Random random = new Random();
-        String enter = in.nextLine();
+        List<String> read = readPhrases();
         boolean quit = false;
         boolean stop = false;
         System.out.println("Введите вопрос");
         while (!quit) {
+            String enter = in.nextLine();
             log.add(enter);
-            if (enter.equals(OUT)) {
+            if (OUT.equals(enter)) {
                 quit = true;
             }
-            if (enter.equals(STOP)) {
+            if (STOP.equals(enter)) {
                 stop = true;
             }
-            if (in.nextLine().equals(CONTINUE) && stop) {
+            if (CONTINUE.equals(enter) && stop) {
                 stop = false;
             }
             if (!quit && !stop) {
-                String randomAnswer = readPhrases().get(random.nextInt(readPhrases().size()));
+                String randomAnswer = read.get(random.nextInt(read.size()));
                 System.out.println(randomAnswer);
                 log.add(randomAnswer);
             }
