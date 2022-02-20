@@ -10,10 +10,15 @@ public class UsageLog4j {
 
     public static void main(String[] args) {
         BasicConfigurator.configure();
-        LOG.trace("trace message");
-        LOG.debug("debug message");
-        LOG.info("info message");
-        LOG.warn("warn message");
-        LOG.error("error message");
+        String name = "Petr Arsentev";
+        int age = 33;
+        byte byteValue = 2;
+        short shortValue = 3;
+        long longValue = 9L;
+        float floatValue = 2.3F;
+        boolean booleanValue = false;
+        char charValue = 102;
+        LOG.debug("User info name : {}, age : {}, byteValue : {}, shortValue : {}, longValue : {}, floatValue : {}, booleanValue : {}, charValue : {}",
+                name, age, byteValue, shortValue, longValue, floatValue, booleanValue, charValue);
     }
 }
