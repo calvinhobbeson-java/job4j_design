@@ -18,7 +18,8 @@ public class UsageLog4j {
         float floatValue = 2.3F;
         boolean booleanValue = false;
         char charValue = 102;
-        LOG.debug("User info name : {}, age : {}, byteValue : {}, shortValue : {}, longValue : {}, floatValue : {}, booleanValue : {}, charValue : {}",
-                name, age, byteValue, shortValue, longValue, floatValue, booleanValue, charValue);
+        double doubleValue = 111;
+        LOG.debug("User info name : {}, age : {}, byteValue : {}, shortValue : {}, longValue : {}, floatValue : {}, booleanValue : {}, charValue : {}, doubleValue : {}",
+                name, age, byteValue, shortValue, longValue, floatValue, booleanValue, charValue, doubleValue);
     }
 }
