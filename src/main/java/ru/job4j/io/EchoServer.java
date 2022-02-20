@@ -3,7 +3,7 @@ package ru.job4j.io;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
+
 
 public class EchoServer {
     public static void main(String[] args) throws IOException {
@@ -19,13 +19,15 @@ public class EchoServer {
                             server.close();
                         } else {
                             if (str.contains("Hello")) {
-                                System.out.println("Hello");
+                                out.write("Hello\n".getBytes());
                             } else {
-                                System.out.println("What");
+                                if (str.contains("What")) {
+                                    out.write("What\n".getBytes());
+                                }
                             }
-                            out.flush();
                         }
                     }
+                    out.flush();
                 }
             }
         }
