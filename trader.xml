@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<trader id="46" isActive="true">
+    <Login login="Nguen@gmail.com"/>
+    <statuses>
+        <status>freeTrader</status>
+        <status>VIP</status>
+        <status>highVIP</status>
+    </statuses>
+</trader>
