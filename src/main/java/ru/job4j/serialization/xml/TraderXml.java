@@ -7,9 +7,8 @@ import javax.xml.bind.annotation.*;
 public class TraderXml {
     @XmlAttribute
     private int id;
-    @XmlAttribute
+    @XmlElement
     private LoginXml login;
-    @XmlAttribute
     @XmlElementWrapper
     @XmlElement(name = "status")
     private String[] statuses;
