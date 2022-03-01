@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class Main {
+
     public static void main(String[] args) {
         final Trader trader = new Trader(46, new Login("Nguen@gmail.com"),
                 new String[]{"freeTrader", "VIP", "HighVIP"},
