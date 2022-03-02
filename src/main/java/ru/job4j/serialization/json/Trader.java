@@ -14,4 +14,19 @@ public class Trader {
         this.isActive = isActive;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public String[] getStatuses() {
+        return statuses;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
 }

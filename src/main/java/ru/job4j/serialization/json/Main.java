@@ -1,20 +1,22 @@
 package ru.job4j.serialization.json;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import org.json.JSONObject;
 
 public class Main {
 
     public static void main(String[] args) {
-        final Trader trader = new Trader(46, new Login("Nguen@gmail.com"),
+
+        Trader trader = new Trader(46, new Login("Nguen@gmail.com"),
                 new String[]{"freeTrader", "VIP", "HighVIP"},
                 true);
 
-        final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(trader));
-        final String traderJson = gson.toJson(trader);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", trader.getId());
+        jsonObject.put("login", trader.getLogin());
+        jsonObject.put("statuses", trader.getStatuses());
+        jsonObject.put("is active", trader.isActive());
 
-        final Trader traderMod = gson.fromJson(traderJson, Trader.class);
-        System.out.println(traderMod);
+        System.out.println(jsonObject.toString());
+
+        System.out.println(new JSONObject(trader).toString());
     }
 }
