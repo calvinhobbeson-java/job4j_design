@@ -1,4 +1,7 @@
+/*
 package ru.job4j.io;
+
+
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -40,3 +43,4 @@ public class CSVReaderTest {
     }
 
 }
+ */
