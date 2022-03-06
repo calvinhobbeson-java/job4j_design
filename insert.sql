@@ -1,0 +1,17 @@
+insert into role(name) values ('user');
+insert into role(name) values ('administrator');
+insert into category(name) values ('complains');
+insert into category(name) values ('fraud');
+insert into state(name) values ('pending');
+insert into state(name) values ('solved');
+insert into users(name, role_id) values ('Nikola',1);
+insert into users(name, role_id) values ('Oleg', 2);
+insert into rules(name) values ('open');
+insert into rules(name) values ('update');
+insert into rules(name) values ('close');
+insert into role_rules(role_id, rules_id) values (1, 1);
+insert into role_rules(role_id, rules_id) values (2, 2);
+insert into role_rules(role_id, rules_id) values (2, 3);
+insert into item(name, users_id, category_id, state_id) values('verification issue', 1, 1, 1);
+insert into comments(name, item_id) values ('cannot pass verification, sir', 1);
+insert into attachs(name, item_id) values ('log.txt', 1);
