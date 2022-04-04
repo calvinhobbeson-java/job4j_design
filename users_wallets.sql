@@ -21,12 +21,12 @@ insert into users (name) values ('Nikolaj');
 
 select u.name, w.name, w.number 
 from users as u join wallet as w 
-on u.wallet_id = w.number;
+on u.wallet_id = w.id;
 
 select u.name as Имя, w.name as Название_кошелька, w.number as Номер_кошелька 
-from users as u join wallet as w 
-on w.name like 'adv%' and u.wallet_id = w.id;
+from users as u join wallet as w
+on u.wallet_id = w.id where w.name like 'adv%' and u.wallet_id = w.id;
 
 select u.name, w.name, w.number 
 from users as u join wallet as w 
-on u.name like 'Ol%' or u.name like 'Vas%';
+on u.wallet_id = w.id where u.name like 'Ol%' or u.name like 'Vas%';
