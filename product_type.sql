@@ -38,7 +38,7 @@ insert into product(name, type_id, expired_date, price) values
 select p.name
 from product as p join type as t
 on p.type_id = t.id
-where p.type_id = 1;
+where t.name like '%СЫР%';
 
 select p.name from product as p where p.name like '%Мороженое%';
 
@@ -46,7 +46,7 @@ select p.name, p.expired_date
 from product as p
 where p.expired_date < current_date;
 
-select p.price , p.name from product as p order by p.price desc limit 1;
+select max(p.price) , p.name from product as p order by p.price desc limit 1;
 
 select t.name as имя_типа, count(*) as количество
 from type as t join product as p
@@ -56,7 +56,7 @@ group by t.name;
 select t.name, count(*)
 from type as t join product as p
 on p.type_id = t.id
-where p.type_id = 1 or p.type_id = 2
+where t.name like '%СЫР%' or t.name like '%МОЛОКО%'
 group by t.name;
 
 select t.name, count(*)
