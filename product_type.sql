@@ -46,7 +46,8 @@ select p.name, p.expired_date
 from product as p
 where p.expired_date < current_date;
 
-select max(p.price) , p.name from product as p order by p.price desc limit 1;
+select p.price, p.name from product as p 
+where p.price = (select max(p.price) from product as p);
 
 select t.name as имя_типа, count(*) as количество
 from type as t join product as p
