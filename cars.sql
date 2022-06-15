@@ -24,6 +24,7 @@ peredacha_id int references peredacha(id)
 insert into kuzov(name) values ('BMW_kuzov');
 insert into kuzov(name) values ('AUDI_kuzov');
 insert into kuzov(name) values ('VOLVO_kuzov');
+insert into kuzov(name) values ('UAZ_kuzov');
 
 insert into dvigatel(name) values ('AUDI_dvigatel');
 insert into dvigatel(name) values ('VOLVO_dvigatel');
@@ -50,3 +51,6 @@ select p.name as peredacha
 from cars c right join peredacha p on c.peredacha_id = p.id
 where c.name is null;
 
+select k.name as kuzov
+from cars c right join kuzov k on c.kuzov_id = k.id
+where c.name is null;
