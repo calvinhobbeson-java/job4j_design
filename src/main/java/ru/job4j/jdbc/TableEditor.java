@@ -9,31 +9,28 @@ import java.util.StringJoiner;
 public class TableEditor implements AutoCloseable {
 
     private Connection connection;
+    private final Properties properties;
 
-    private Properties properties;
-
-    public TableEditor(Properties properties) {
+    public TableEditor(Properties properties) throws SQLException, ClassNotFoundException {
         this.properties = properties;
         initConnection();
     }
 
-    private void initConnection() {
-        properties = new Properties();
-
-        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
-
-            properties.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void initConnection() throws SQLException, ClassNotFoundException {
+        Class.forName(properties.getProperty("driver"));
+        connection = DriverManager.getConnection(
+                properties.getProperty("url"),
+                properties.getProperty("login"),
+                properties.getProperty("password")
+        );
     }
 
-        public void createTable(String tableName) throws Exception {
-            try (Statement statement = connection.createStatement()) {
-                String sql = "create table if not exists" + tableName + " (%s, %s);";
-                statement.execute(sql);
-            }
+    public void createTable(String tableName) throws Exception {
+        try (Statement statement = connection.createStatement()) {
+            String sql = "create table if not exists" + tableName + " (%s, %s);";
+            statement.execute(sql);
         }
+    }
 
     public void dropTable(String tableName) throws Exception {
         try (Statement statement = connection.createStatement()) {
@@ -90,7 +87,16 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
-    public static void main(String[] args) {
-        TableEditor tableEditor = new TableEditor();
+    public static void main(String[] args) throws Exception {
+        Properties properties = new Properties();
+
+        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
+            properties.load(in);
+            TableEditor tableEditor = new TableEditor(properties);
+            tableEditor.createTable("Zelda_BotW");
+            getTableScheme(connection, "Zelda_BotW");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
