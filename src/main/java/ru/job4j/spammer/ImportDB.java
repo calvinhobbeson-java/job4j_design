@@ -22,7 +22,7 @@ public class ImportDB {
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines()
                     .map(c -> c.split(";"))
-                    .forEach(c -> users.add(new User(c[1], c[2])));
+                    .forEach(c -> users.add(new User(c[0], c[1])));
         }
         return users;
     }
