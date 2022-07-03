@@ -21,7 +21,8 @@ public class ImportDB {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines()
-                    .map(c -> c.split(";"))
+                    .filter(c -> !c.isEmpty())
+                    .map(c -> c.split(";", 2))
                     .forEach(c -> users.add(new User(c[0], c[1])));
         }
         return users;
