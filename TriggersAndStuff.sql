@@ -32,16 +32,14 @@ create or replace function additionalTax()
     returns trigger as
 $$
     BEGIN
-        update products
-        set price = price + price * 0.2
-        where id = new.id;
+        NEW.price = NEW.price + NEW.price * 0.2;
         return NEW;
     END;
 $$
 LANGUAGE 'plpgsql';
 
 create trigger additional_tax_trigger
-    after insert
+    before insert
     on products
     for each row
     execute procedure additionalTax();
