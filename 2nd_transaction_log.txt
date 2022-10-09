@@ -1,0 +1,57 @@
+READ COMMITTED-------------------------------------------------------------------
+
+postgres=# begin transaction;
+BEGIN
+postgres=*# select * from goods;
+ id |   name    |  producer  | count | price
+----+-----------+------------+-------+-------
+  1 | product_1 | producer_1 |     3 |    50
+  2 | product_2 | producer_2 |    15 |    32
+  3 | product_3 | producer_3 |     8 |   115
+(3 rows)
+postgres=*# select * from goods;
+ id |   name    |  producer  | count | price
+----+-----------+------------+-------+-------
+  2 | product_2 | producer_2 |    15 |    32
+  5 | product_4 |            |    11 |    64
+  1 | product_1 | producer_1 |     3 |    75
+(3 rows)
+
+postgres=*#
+
+REPEATABLE READ-----------------------------------------------------------------
+
+postgres=# begin transaction isolation level repeatable read;
+BEGIN
+postgres=*# select * from  goods;
+ id |   name    |  producer  | count | price
+----+-----------+------------+-------+-------
+  2 | product_2 | producer_2 |    15 |    32
+  5 | product_4 |            |    11 |    64
+  1 | product_1 | producer_1 |     3 |    75
+(3 rows)
+
+postgres=*# update goods set price = 990 where price = 32;
+UPDATE 1
+postgres=*#
+postgres=# begin transaction isolation level repeatable read;
+BEGIN
+postgres=*# update goods set price = 300 where price = 32;
+ERROR:  could not serialize access due to concurrent update
+postgres=!#
+
+SERIALIZABLE-------------------------------------------------------------------
+
+postgres=# begin transaction isolation level serializable;
+BEGIN
+postgres=*# select sum(count) from goods;
+ sum
+-----
+  29
+(1 row)
+
+postgres=*# update goods set count = 1000 where name = 'product_2';
+UPDATE 1
+postgres=*# commit;
+COMMIT
+postgres=#
