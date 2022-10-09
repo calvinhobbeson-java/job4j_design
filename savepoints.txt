@@ -1,0 +1,46 @@
+postgres=# begin transaction;
+BEGIN
+postgres=*# update goods set producer = 'producer_4' where price = 64;
+UPDATE 1
+postgres=*# savepoint first_savepoint;
+SAVEPOINT
+postgres=*# delete from goods where name = 'product_2';
+DELETE 1
+postgres=*# savepoint second_saveppoint;
+SAVEPOINT
+postgres=*# delete from goods;
+DELETE 4
+postgres=*# select * from goods;
+ id | name | producer | count | price
+----+------+----------+-------+-------
+(0 rows)
+
+postgres=*# rollback to secont_savepoint;
+ERROR:  savepoint "secont_savepoint" does not exist
+postgres=!# rollback to second_savepoint;
+ERROR:  savepoint "second_savepoint" does not exist
+postgres=!# rollback to second_saveppoint;
+ROLLBACK
+postgres=*# select * from goods;
+ id |   name    |  producer  | count | price
+----+-----------+------------+-------+-------
+  1 | product_1 | producer_1 |     3 |    75
+  7 | product_6 | producer_6 |    12 |    99
+  8 | product_7 | producer_7 |    64 |    97
+  5 | product_4 | producer_4 |    11 |    64
+(4 rows)
+
+postgres=*# rollback to first_savepoint;
+ROLLBACK
+postgres=*# select * from goods;
+ id |   name    |  producer  | count | price
+----+-----------+------------+-------+-------
+  1 | product_1 | producer_1 |     3 |    75
+  2 | product_2 | producer_2 |  1000 |   240
+  7 | product_6 | producer_6 |    12 |    99
+  8 | product_7 | producer_7 |    64 |    97
+  5 | product_4 | producer_4 |    11 |    64
+(5 rows)
+
+postgres=*# rollback to second_saveppoint;
+ERROR:  savepoint "second_saveppoint" does not exist
