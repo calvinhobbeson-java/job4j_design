@@ -1,4 +1,4 @@
-package ru.job4j.cache;
+package ru.job4j.cache.menu;
 
 import ru.job4j.cache.DirFileCache;
 
@@ -11,24 +11,17 @@ public class Emulator {
     public static final int ADD_DIRECTORY = 1;
     public static final int LOAD_TO_CACHE = 2;
     public static final int GET_FROM_CACHE = 3;
-    public static final String MENU =
-            "Выберите пункт меню:" +
-            "1-выбрать  директорию" +
-            "2-загрузить файл в кэш" +
-            "3-выгрузить файл из кэша" +
-            "Любая другая клавиша - выход";
+    public static final String MENU = """
+                    Выберите пункт меню:
+                    1-выбрать  директорию
+                    3-выгрузить файл из кэша
+                    Любая другая клавиша - выход""";
 
 
     private void insertDirectory() {
         System.out.println("Введите путь до директории");
         String directory = scanner.nextLine();
         dirFileCache = new DirFileCache(directory);
-    }
-
-    private void loadCache() {
-        System.out.println("Введите имя файла");
-        String name = scanner.nextLine();
-        dirFileCache.put(name, dirFileCache.load(name));
     }
 
     private void getCache() {
@@ -45,8 +38,6 @@ public class Emulator {
             int choice = Integer.parseInt(scanner.nextLine());
             if (choice == 1) {
                 insertDirectory();
-            } else if (choice == 2) {
-                loadCache();
             } else if (choice == 3) {
                 getCache();
             } else {
