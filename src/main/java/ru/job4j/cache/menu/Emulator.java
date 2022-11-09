@@ -5,17 +5,12 @@ import ru.job4j.cache.DirFileCache;
 import java.util.Scanner;
 
 public class Emulator {
-    DirFileCache dirFileCache;
-    Scanner scanner = new Scanner(System.in);
+   private DirFileCache dirFileCache;
+   private Scanner scanner = new Scanner(System.in);
 
     public static final int ADD_DIRECTORY = 1;
-    public static final int LOAD_TO_CACHE = 2;
-    public static final int GET_FROM_CACHE = 3;
-    public static final String MENU = """
-                    Выберите пункт меню:
-                    1-выбрать  директорию
-                    3-выгрузить файл из кэша
-                    Любая другая клавиша - выход""";
+    public static final int GET_FROM_CACHE = 2;
+    public static final String MENU = "";
 
 
     private void insertDirectory() {
@@ -36,9 +31,9 @@ public class Emulator {
         while (run) {
             System.out.println(MENU);
             int choice = Integer.parseInt(scanner.nextLine());
-            if (choice == 1) {
+            if (choice == ADD_DIRECTORY) {
                 insertDirectory();
-            } else if (choice == 3) {
+            } else if (choice == GET_FROM_CACHE) {
                 getCache();
             } else {
                 run = false;
