@@ -10,7 +10,11 @@ public class Emulator {
 
     public static final int ADD_DIRECTORY = 1;
     public static final int GET_FROM_CACHE = 2;
-    public static final String MENU = "";
+    public static final String MENU = """
+                    Выберите пункт меню:
+                    1-выбрать  директорию
+                    3-выгрузить файл из кэша
+                    Любая другая клавиша - выход""";
 
 
     private void insertDirectory() {
