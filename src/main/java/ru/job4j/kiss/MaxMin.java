@@ -19,7 +19,7 @@ public class MaxMin {
         }
         T result = value.get(0);
         for (T l: value) {
-            if(predicate.test(result, l)) {
+            if (predicate.test(result, l)) {
                 result = l;
             }
         }

@@ -1,13 +1,13 @@
 package ru.job4j.kiss;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MaxMinTest {
 
