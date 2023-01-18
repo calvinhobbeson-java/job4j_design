@@ -22,13 +22,13 @@ public class MaxMinTest {
     @Test
     public void whenMin()  {
         MaxMin testMin = new MaxMin();
-        assertTrue(testMin.min(values, comparator).equals(1));
+        assertTrue(testMin.min(values, comparator).equals(-5));
     }
 
     @Test
     public void whenMax()  {
         MaxMin testMin = new MaxMin();
-        assertTrue(testMin.max(values, comparator).equals(6));
+        assertTrue(testMin.max(values, comparator).equals(20));
     }
 
 }
