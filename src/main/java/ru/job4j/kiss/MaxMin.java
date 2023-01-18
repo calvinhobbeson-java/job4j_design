@@ -6,11 +6,11 @@ import java.util.function.BiPredicate;
 
 public class MaxMin {
     public <T> T max(List<T> value, Comparator<T> comparator) {
-        return minMax(value, (r, l) -> comparator.compare(r, l) > 0);
+        return minMax(value, (r, l) -> comparator.compare(r, l) < 0);
     }
 
     public <T> T min(List<T> value, Comparator<T> comparator) {
-        return minMax(value, (r, l) -> comparator.compare(r, l) < 0);
+        return minMax(value, (r, l) -> comparator.compare(r, l) > 0);
     }
 
     public <T> T minMax(List<T> value, BiPredicate<T, T> predicate) {

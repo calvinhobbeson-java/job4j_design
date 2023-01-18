@@ -1,9 +1,8 @@
 package ru.job4j.kiss;
 
-import org.testng.annotations.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class MaxMinTest {
 
     @BeforeEach
     void init() {
-        values = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        values = List.of(1, 20, 3, 4, -5, 6);
         comparator = Comparator.naturalOrder();
     }
 
