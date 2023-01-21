@@ -54,4 +54,16 @@ import java.util.List;
         List<Session> sessions = cinema.find(ses -> false);
         assertThat(sessions).doesNotContain(session);
     }
+
+    @Test
+    public void whenBuyOnOwnedPlaceThenGetException() {
+        Account account = new AccountCinema();
+        Account secondAccount = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date = Calendar.getInstance();
+        cinema.buy(account, 5, 7, date);
+        assertThatThrownBy(() -> cinema.buy(secondAccount, 5, 7, date)).
+                isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
