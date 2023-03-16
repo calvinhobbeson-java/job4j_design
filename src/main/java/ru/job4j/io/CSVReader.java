@@ -31,9 +31,12 @@ public class CSVReader {
      */
     private static List readFile(String path) {
         List<String> data = new ArrayList<>();
-        Scanner scanner = new Scanner(path);
-        while (scanner.hasNext()) {
-            data.add(scanner.nextLine());
+        try (Scanner scanner = new Scanner(new FileInputStream(path), StandardCharsets.UTF_8).useDelimiter(System.lineSeparator())) {
+            while (scanner.hasNext()) {
+                data.add(scanner.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
         return data;
     }
