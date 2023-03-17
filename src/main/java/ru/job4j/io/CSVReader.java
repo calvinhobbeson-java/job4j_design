@@ -65,19 +65,26 @@ public class CSVReader {
         }
         String[] temp;
         String result = "";
+        StringBuilder stringBuilder = new StringBuilder();
         for (String str : data) {
             temp = str.split(delimiter);
-            for (int index = 1; index < indexes.size(); index++) {
-                result = result + temp[indexes.get(index)];
+            for (int index = 0; index < indexes.size(); index++) {
+                result = result + temp[indexes.get(index)] + delimiter;
             }
-            if (out.equals("stdout")) {
-                System.out.println(result);
-            } else {
-                try (PrintWriter printWriter = new PrintWriter(new BufferedOutputStream(new FileOutputStream(out)))) {
-                    printWriter.write(result);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            stringBuilder.append(result, 0, result.length() - 1).append(System.lineSeparator());
+            printResult(out, stringBuilder);
+            result = "";
+        }
+    }
+
+    private static void printResult(String out, StringBuilder stringBuilder) {
+        if (out.equals("stdout")) {
+            System.out.println(stringBuilder);
+        } else {
+            try (PrintWriter printWriter = new PrintWriter(new BufferedOutputStream(new FileOutputStream(out)))) {
+                printWriter.write(stringBuilder.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
