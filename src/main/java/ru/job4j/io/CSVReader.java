@@ -64,17 +64,17 @@ public class CSVReader {
             }
         }
         String[] temp;
-        String result = "";
+        StringBuilder result = new StringBuilder();
         StringBuilder stringBuilder = new StringBuilder();
         for (String str : data) {
             temp = str.split(delimiter);
-            for (int index = 0; index < indexes.size(); index++) {
-                result = result + temp[indexes.get(index)] + delimiter;
+            for (Integer integer : indexes) {
+                result.append(temp[integer]).append(delimiter);
             }
-            stringBuilder.append(result, 0, result.length() - 1).append(System.lineSeparator());
-            printResult(out, stringBuilder);
-            result = "";
+            stringBuilder.append(result.toString(), 0, result.length() - 1).append(System.lineSeparator());
+            result = new StringBuilder();
         }
+        printResult(out, stringBuilder);
     }
 
     private static void printResult(String out, StringBuilder stringBuilder) {
