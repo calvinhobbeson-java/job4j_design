@@ -74,7 +74,7 @@ public class CSVReader {
             stringBuilder.append(result.toString(), 0, result.length() - 1).append(System.lineSeparator());
             result = new StringBuilder();
         }
-        printResult(out, stringBuilder);
+       printResult(out, stringBuilder);
     }
 
     private static void printResult(String out, StringBuilder stringBuilder) {
