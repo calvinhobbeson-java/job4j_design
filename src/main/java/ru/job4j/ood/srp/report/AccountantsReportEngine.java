@@ -5,7 +5,6 @@ import ru.job4j.ood.srp.currency.CurrencyConverter;
 import ru.job4j.ood.srp.formatter.DateTimeParser;
 import ru.job4j.ood.srp.model.Employee;
 import ru.job4j.ood.srp.store.Store;
-
 import java.util.Calendar;
 import java.util.function.Predicate;
 
@@ -32,7 +31,7 @@ public class AccountantsReportEngine implements Report {
             text.append(employee.getName()).append(" ")
                     .append(dateTimeParser.parse(employee.getHired())).append(" ")
                     .append(dateTimeParser.parse(employee.getFired())).append(" ")
-                    .append(converter.convert(Currency.RUB,employee.getSalary(),target))
+                    .append(converter.convert(Currency.RUB, employee.getSalary(), target))
                     .append(System.lineSeparator());
 
         }

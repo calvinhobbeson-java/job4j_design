@@ -23,7 +23,7 @@ public class AccountantsReportEngineTest {
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         InMemoryCurrencyConverter converter = new InMemoryCurrencyConverter();
         store.add(worker);
-        Report engine = new AccountantsReportEngine(store, parser, converter ,target);
+        Report engine = new AccountantsReportEngine(store, parser, converter, target);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
