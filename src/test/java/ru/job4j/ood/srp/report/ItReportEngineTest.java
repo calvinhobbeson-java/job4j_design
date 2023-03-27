@@ -13,19 +13,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ItReportEngineTest {
 
     @Test
-    public void whenOldGenerated() {
+    public void whenItGenerated() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         store.add(worker);
-        Report engine = new ReportEngine(store, parser);
+        Report engine = new ItReportEngine(store, parser);
         StringBuilder expect = new StringBuilder()
-                .append("Name; Hired; Fired; Salary;")
+                .append("Name, Hired, Fired, Salary,")
                 .append(System.lineSeparator())
-                .append(worker.getName()).append(" ")
-                .append(parser.parse(worker.getHired())).append(" ")
-                .append(parser.parse(worker.getFired())).append(" ")
+                .append(worker.getName()).append(",")
+                .append(parser.parse(worker.getHired())).append(",")
+                .append(parser.parse(worker.getFired())).append(",")
                 .append(worker.getSalary())
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());

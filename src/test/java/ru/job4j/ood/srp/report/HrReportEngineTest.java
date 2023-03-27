@@ -17,13 +17,16 @@ public class HrReportEngineTest {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
-        Employee workerTwo = new Employee("JK", now, now, 50);
+        Employee workerTwo = new Employee("JK", now, now, 10000);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         store.add(worker);
         store.add(workerTwo);
-        Report engine = new ReportEngine(store, parser);
+        Report engine = new HrReportEngine(store);
         StringBuilder expect = new StringBuilder()
-                .append("Name; Hired; Fired; Salary;")
+                .append("Name; Salary;")
+                .append(System.lineSeparator())
+                .append(workerTwo.getName()).append(" ")
+                .append(workerTwo.getSalary())
                 .append(System.lineSeparator())
                 .append(worker.getName()).append(" ")
                 .append(worker.getSalary())
