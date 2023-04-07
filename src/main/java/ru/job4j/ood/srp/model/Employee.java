@@ -7,11 +7,11 @@ import java.util.Objects;
 public class Employee {
     @XmlElement
     private String name;
-    @XmlAttribute
+    @XmlElement
     private Calendar hired;
-    @XmlAttribute
+    @XmlElement
     private Calendar fired;
-    @XmlAttribute
+    @XmlElement
     private double salary;
 
     public Employee() { }

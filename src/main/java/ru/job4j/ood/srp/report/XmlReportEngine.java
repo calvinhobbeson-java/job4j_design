@@ -6,7 +6,7 @@ import ru.job4j.ood.srp.store.Store;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.List;
@@ -36,8 +36,11 @@ public class XmlReportEngine implements Report {
     }
 
     @XmlRootElement
+    @XmlAccessorType(XmlAccessType.FIELD)
     public static class Employees {
+        @XmlElement(name = "employee")
         private List<Employee> employees;
+        public Employees() { }
         public Employees(List<Employee> employees) {
             this.employees = employees;
         }
