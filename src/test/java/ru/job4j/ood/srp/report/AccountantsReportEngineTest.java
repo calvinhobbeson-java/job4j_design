@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AccountantsReportEngineTest {
 
     @Test
-    public void whenAccountantsGenerated() {
+    public void whenAccountantsGenerated() throws JAXBException {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 25000);

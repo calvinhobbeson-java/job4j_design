@@ -3,7 +3,6 @@ package ru.job4j.ood.srp.model;
 import javax.xml.bind.annotation.*;
 import java.util.Calendar;
 import java.util.Objects;
-@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Employee {
     @XmlElement
@@ -16,6 +15,7 @@ public class Employee {
     private double salary;
 
     public Employee() { }
+
     public Employee(String name, Calendar hired, Calendar fired, double salary) {
         this.name = name;
         this.hired = hired;
