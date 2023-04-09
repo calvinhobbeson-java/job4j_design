@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 public class XmlReportDateParser implements DateTimeParser<Calendar> {
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd:MM:yyyy");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd:MM:yyyy HH:mm");
 
     @Override
     public String parse(Calendar calendar) {
