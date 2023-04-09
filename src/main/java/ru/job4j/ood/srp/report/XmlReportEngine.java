@@ -53,7 +53,7 @@ public class XmlReportEngine implements Report {
         private double salary;
         public EmpXML() { }
         public EmpXML(Employee employee) {
-            SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd:MM:yyyy");
+            SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd:MM:yyyy HH:mm");
             this.name = employee.getName();
             this.hired = DATE_FORMAT.format(employee.getHired().getTime());
             this.fired = DATE_FORMAT.format(employee.getFired().getTime());
