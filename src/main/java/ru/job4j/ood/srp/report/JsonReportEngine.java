@@ -11,11 +11,9 @@ import java.util.function.Predicate;
 public class JsonReportEngine implements Report {
 
     private final Store store;
-    private final DateTimeParser<Calendar> dateTimeParser;
 
-    public JsonReportEngine(Store store, DateTimeParser<Calendar> dateTimeParser) {
+    public JsonReportEngine(Store store) {
         this.store = store;
-        this.dateTimeParser = dateTimeParser;
     }
 
     @Override

@@ -18,9 +18,8 @@ public class JsonReportEngineTest {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee emp1 = new Employee("Ivan", now, now, 25000);
-        DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         store.add(emp1);
-        Report engine = new JsonReportEngine(store, parser);
+        Report engine = new JsonReportEngine(store);
         String rsl = engine.generate(em -> true);
         StringBuilder exp = new StringBuilder()
                 .append("[").append("{").append("\"name\":\"")
