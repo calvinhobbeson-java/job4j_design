@@ -3,8 +3,9 @@ package ru.job4j.ood.lsp;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import static org.junit.Assert.assertFalse;
+import static org.assertj.core.api.Assertions.*;
 
 class ControlQualityTest {
 
@@ -18,8 +19,8 @@ class ControlQualityTest {
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
-        ControlQuality controlQuality = new ControlQuality(List.of(noodles, bread, mayo, mayoTwo), List.of(warehouse, shop, trash));
+        ControlQuality controlQuality = new ControlQuality(new ArrayList<>(List.of(noodles, bread, mayo, mayoTwo)), List.of(warehouse, shop, trash),LocalDate.now());
         controlQuality.storesDelivery();
-        assertFalse(shop.getStorage().isEmpty());
+        assertThat(!shop.getStorage().isEmpty());
     }
 }
