@@ -16,7 +16,7 @@ public class Shop extends AbstractStore {
             if (food.getExpirePercentage() <= 75 && food.getExpirePercentage() >= 25) {
                 food.setDiscount(discount);
                 storage.add(food);
-                foodList.remove(food);
+                foodIterator.remove();
             }
         }
     }

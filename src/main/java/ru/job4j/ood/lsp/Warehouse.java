@@ -14,7 +14,7 @@ public class Warehouse extends AbstractStore {
             Food food = foodIterator.next();
             if (food.getExpirePercentage() >= 75) {
                 storage.add(food);
-                foodList.remove(food);
+                foodIterator.remove();
             }
         }
     }

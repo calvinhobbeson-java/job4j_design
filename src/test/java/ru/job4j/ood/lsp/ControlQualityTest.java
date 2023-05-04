@@ -21,6 +21,6 @@ class ControlQualityTest {
         Trash trash = new Trash();
         ControlQuality controlQuality = new ControlQuality(new ArrayList<>(List.of(noodles, bread, mayo, mayoTwo)), List.of(warehouse, shop, trash),LocalDate.now());
         controlQuality.storesDelivery();
-        assertThat(warehouse.getStorage().contains(bread));
+        assertThat(warehouse.getStorage().contains(noodles));
     }
 }

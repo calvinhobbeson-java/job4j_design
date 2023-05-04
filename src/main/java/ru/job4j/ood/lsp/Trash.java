@@ -15,7 +15,7 @@ public class Trash extends AbstractStore {
             Food food = foodIterator.next();
             if (food.getExpirePercentage() <= 75) {
                 storage.add(food);
-                foodList.remove(food);
+                foodIterator.remove();
             }
         }
     }
