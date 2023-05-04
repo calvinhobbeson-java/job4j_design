@@ -10,8 +10,8 @@ public class Warehouse extends AbstractStore {
     @Override
     public void addProduct(List<Food> foodList) {
         ListIterator<Food> foodIterator = foodList.listIterator();
-        Food food = foodIterator.next();
         while (foodIterator.hasNext()) {
+            Food food = foodIterator.next();
             if (food.getExpirePercentage() >= 75) {
                 storage.add(food);
                 foodList.remove(food);

@@ -12,9 +12,10 @@ public class Trash extends AbstractStore {
     public void addProduct(List<Food> foodList) {
         ListIterator<Food> foodIterator = foodList.listIterator();
         while (foodIterator.hasNext()) {
-            if (foodIterator.next().getExpirePercentage() <= 75) {
-                storage.add(foodIterator.next());
-                foodList.remove(foodIterator.next());
+            Food food = foodIterator.next();
+            if (food.getExpirePercentage() <= 75) {
+                storage.add(food);
+                foodList.remove(food);
             }
         }
     }

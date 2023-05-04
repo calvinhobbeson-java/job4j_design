@@ -3,6 +3,7 @@ package ru.job4j.ood.lsp;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.ListIterator;
 
 public class ControlQuality {
     private List<Food> foodList;
@@ -16,7 +17,9 @@ public class ControlQuality {
     }
 
     public static void setExpireDate(List<Food> foodList, LocalDate today) {
-        for (Food food : foodList) {
+        ListIterator<Food> foodIterator = foodList.listIterator();
+        while (foodIterator.hasNext()) {
+            Food food = foodIterator.next();
             long overallDays = ChronoUnit.DAYS.between(food.getCreateDate(), food.getExpireDate());
             long daysBeforeExpire = ChronoUnit.DAYS.between(today, food.getExpireDate());
             long percentage = daysBeforeExpire / overallDays * 100;
