@@ -22,7 +22,7 @@ public class ControlQuality {
             Food food = foodIterator.next();
             long overallDays = ChronoUnit.DAYS.between(food.getCreateDate(), food.getExpireDate());
             long daysBeforeExpire = ChronoUnit.DAYS.between(today, food.getExpireDate());
-            long percentage = daysBeforeExpire / overallDays * 100;
+            long percentage = 100 - (100 / (overallDays / daysBeforeExpire));
             food.setExpirePercentage((int) percentage);
         }
     }

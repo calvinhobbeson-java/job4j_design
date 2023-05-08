@@ -1,9 +1,6 @@
 package ru.job4j.ood.lsp;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
 
 public abstract class Food {
     private String name;
@@ -13,13 +10,12 @@ public abstract class Food {
     private int discount;
     private int expirePercentage;
 
-    public Food(String name, LocalDate createDate, LocalDate expireDate, int price, int discount, int expirePercentage) {
+    public Food(String name, LocalDate createDate, LocalDate expireDate, int price, int discount) {
         this.name = name;
         this.createDate = createDate;
         this.expireDate = expireDate;
         this.price = price;
         this.discount = discount;
-        this.expirePercentage = expirePercentage;
     }
 
 

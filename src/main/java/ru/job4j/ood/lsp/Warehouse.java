@@ -12,11 +12,11 @@ public class Warehouse extends AbstractStore {
         ListIterator<Food> foodIterator = foodList.listIterator();
         while (foodIterator.hasNext()) {
             Food food = foodIterator.next();
-            if (food.getExpirePercentage() >= 75) {
+            if (food.getExpirePercentage() <= 75) {
                 storage.add(food);
                 foodIterator.remove();
             }
-        }
+         }
     }
     public List<Food> getStorage() {
         return storage;
