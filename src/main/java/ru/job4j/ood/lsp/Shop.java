@@ -13,7 +13,7 @@ public class Shop extends AbstractStore {
         ListIterator<Food> foodIterator = foodList.listIterator();
         while (foodIterator.hasNext()) {
             Food food = foodIterator.next();
-            if (food.getExpirePercentage() >= 75 && food.getExpirePercentage() <= 25) {
+            if (food.getExpirePercentage() >= 75 || food.getExpirePercentage() <= 25) {
                 food.setDiscount(discount);
                 storage.add(food);
                 foodIterator.remove();

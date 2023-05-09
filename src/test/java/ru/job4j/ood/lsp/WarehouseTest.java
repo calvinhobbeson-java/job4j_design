@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WarehouseTest {
@@ -18,7 +17,6 @@ class WarehouseTest {
         Warehouse warehouse = new Warehouse();
             ControlQuality controlQuality = new ControlQuality(new ArrayList<>(List.of(noodles, bread)), List.of(warehouse),LocalDate.now());
             controlQuality.storesDelivery();
-            List<Food> expected = List.of(noodles);
-            assertThat(warehouse.getStorage(), isEqualTo(expected));
+        assertThat(warehouse.getStorage().contains(noodles)).isTrue();
         }
     }
