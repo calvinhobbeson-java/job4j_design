@@ -15,7 +15,7 @@ class ShopTest {
         Noodles noodles = new Noodles("JinRamen", LocalDate.now().minusMonths(50), LocalDate.now().plusMonths(1), 49, discount);
         Bread bread = new Bread("WhiteBread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(11), 20, discount);
         Shop shop = new Shop();
-        ControlQuality controlQuality = new ControlQuality(new ArrayList<>(List.of(bread, noodles)), List.of(shop),LocalDate.now());
+        ControlQuality controlQuality = new ControlQuality(new ArrayList<>(List.of(bread, noodles)), List.of(shop), LocalDate.now());
         controlQuality.storesDelivery();
         assertThat(shop.getStorage().contains(bread)).isTrue();
     }
