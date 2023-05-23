@@ -13,16 +13,14 @@ import static org.assertj.core.api.Assertions.*;
 class ParkingTest {
     @Test
     public void whenStart()  {
-        int carParkingSize = 2;
-        int truckParkingSize = 1;
-        List<Auto> cars = new ArrayList<>(carParkingSize);
-        List<Auto> trucks = new ArrayList<>(truckParkingSize);
-        Auto toyota = new Toyota();
-        Auto moskvitch = new Moskvitch();
-        Auto kamaz = new Kamaz();
-        Parking parking = new Parking(cars, trucks, new ArrayList<>(List.of(toyota, moskvitch, kamaz)));
+        CarSlots carslots = new CarSlots(new ArrayList<>(2));
+        TruckSlots truckSlots = new TruckSlots(new ArrayList<>(2));
+        Auto toyota = new Toyota(1);
+        Auto moskvitch = new Moskvitch(1);
+        Auto kamaz = new Kamaz(2);
+        Parking parking = new Parking(new ArrayList<>(List.of(toyota, moskvitch, kamaz)), new ArrayList<>(List.of(carslots, truckSlots)));
         parking.park();
         List<Auto> expected = List.of(toyota, moskvitch);
-        assertThat(parking.getCars().equals(expected));
+        assertThat(carslots.getSlots().equals(expected));
     }
 }

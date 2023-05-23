@@ -3,23 +3,17 @@ package ru.job4j.ood.lsp.parking;
 import java.util.List;
 
 public class Parking {
-    private List<Auto> cars;
-    private List<Auto> trucks;
-   private List<Auto> autoList;
+    private List<Auto> automobiles;
+    List<AbstractSlots> separateParkings;
 
-    public Parking(List<Auto> cars, List<Auto> trucks, List<Auto> autoList) {
-        this.cars = cars;
-        this.trucks  = trucks;
-        this.autoList = autoList;
-    }
-    public void park()  {
+    public Parking(List<Auto> automobiles, List<AbstractSlots> separateParkings) {
+        this.automobiles = automobiles;
+        this.separateParkings = separateParkings;
     }
 
-    public List<Auto> getCars() {
-        return cars;
-    }
-
-    public void setCars(List<Auto> cars) {
-        this.cars = cars;
+    public void park() {
+        for (AbstractSlots slot : separateParkings) {
+            slot.addToSlot(automobiles);
+        }
     }
 }
