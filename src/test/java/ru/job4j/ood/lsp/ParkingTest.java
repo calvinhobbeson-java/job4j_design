@@ -13,8 +13,10 @@ import static org.assertj.core.api.Assertions.*;
 class ParkingTest {
     @Test
     public void whenStart()  {
-        CarSlots carslots = new CarSlots(new ArrayList<>(2));
-        TruckSlots truckSlots = new TruckSlots(new ArrayList<>(2));
+        CarSlots carslots = new CarSlots();
+        TruckSlots truckSlots = new TruckSlots();
+        carslots.setSlots(new ArrayList<>(2));
+        truckSlots.setSlots(new ArrayList<>(2));
         Auto toyota = new Toyota(1);
         Auto moskvitch = new Moskvitch(1);
         Auto kamaz = new Kamaz(2);

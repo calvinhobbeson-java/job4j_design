@@ -7,8 +7,7 @@ public class TruckSlots extends AbstractSlots {
     private List<Auto> slots;
     private int availableSlots = slots.size();
 
-    public TruckSlots(List<Auto> slots) {
-        super(slots);
+    public TruckSlots() {
     }
 
     @Override
@@ -25,5 +24,9 @@ public class TruckSlots extends AbstractSlots {
             }
             autoListIterator.remove();
         }
+    }
+
+    public void setSlots(List<Auto> slots) {
+        this.slots = slots;
     }
 }
