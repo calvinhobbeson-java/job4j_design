@@ -5,9 +5,11 @@ import java.util.ListIterator;
 
 public class TruckSlots extends AbstractSlots {
     private List<Auto> slots;
-    private int availableSlots = slots.size();
+    private int availableSlots;
 
-    public TruckSlots() {
+    public TruckSlots(List<Auto> slots, int availableSlots) {
+        super(slots, availableSlots);
+        this.slots = slots;
     }
 
     @Override
@@ -24,9 +26,5 @@ public class TruckSlots extends AbstractSlots {
             }
             autoListIterator.remove();
         }
-    }
-
-    public void setSlots(List<Auto> slots) {
-        this.slots = slots;
     }
 }
