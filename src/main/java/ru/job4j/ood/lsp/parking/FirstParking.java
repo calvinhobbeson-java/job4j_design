@@ -3,7 +3,7 @@ package ru.job4j.ood.lsp.parking;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirstParking implements Parking{
+public class FirstParking implements Parking {
     int carParkingSize;
     int truckParkingSize;
 
