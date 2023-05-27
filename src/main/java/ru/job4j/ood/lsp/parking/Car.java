@@ -1,6 +1,10 @@
 package ru.job4j.ood.lsp.parking;
 
-public interface Car {
+public class Car extends Auto {
+
     public static final int SIZE = 1;
-    public static final boolean IS_CAR = true;
+
+    public Car(String name) {
+        super(name, SIZE);
+    }
 }
